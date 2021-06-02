@@ -1,0 +1,37 @@
+yarn run v1.22.5
+$ /Users/christian/developer/ReactNativeProjects/MinimalReactNativeApp/node_modules/.bin/react-native info
+info Fetching system and libraries information...
+System:
+    OS: macOS Mojave 10.14.6
+    CPU: (8) x64 Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
+    Memory: 9.13 GB / 32.00 GB
+    Shell: 3.2.57 - /bin/bash
+  Binaries:
+    Node: 14.17.0 - /var/folders/9l/wwt6ljv10b9fhwjsybmw3d140000gn/T/yarn--1622646870869-0.18323990488632624/node
+    Yarn: 1.22.5 - /var/folders/9l/wwt6ljv10b9fhwjsybmw3d140000gn/T/yarn--1622646870869-0.18323990488632624/yarn
+    npm: 6.14.13 - ~/.nodenv/versions/14.17.0/bin/npm
+    Watchman: 4.9.0 - /usr/local/bin/watchman
+  Managers:
+    CocoaPods: 1.10.1 - /usr/local/bin/pod
+  SDKs:
+    iOS SDK:
+      Platforms: iOS 13.2, DriverKit 19.0, macOS 10.15, tvOS 13.2, watchOS 6.1
+    Android SDK:
+      API Levels: 23, 28, 29, 30
+      Build Tools: 28.0.2, 28.0.3, 29.0.2
+      System Images: android-23 | Google APIs Intel x86 Atom, android-24 | Google Play Intel x86 Atom, android-29 | Google APIs Intel x86 Atom, android-29 | Google Play Intel x86 Atom
+      Android NDK: Not Found
+  IDEs:
+    Android Studio: 4.2 AI-202.7660.26.42.7322048
+    Xcode: 11.3.1/11C505 - /usr/bin/xcodebuild
+  Languages:
+    Java: 11.0.8 - /usr/bin/javac
+    Python: 3.7.7 - /Users/christian/.pyenv/shims/python
+  npmPackages:
+    @react-native-community/cli: Not Found
+    react: 16.13.1 => 16.13.1 
+    react-native: 0.63.4 => 0.63.4 
+    react-native-macos: Not Found
+  npmGlobalPackages:
+    *react-native*: Not Found
+Done in 2.86s.
