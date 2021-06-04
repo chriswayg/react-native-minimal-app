@@ -1,4 +1,6 @@
-# Manual Install of Minimal Project
+# Manual Install of a Minimal React Native Project
+
+The purpose of this experiment is to understand the essential files that go into a React Native project and to learn how to recreate or fix parts, if necessary. It is also intended to check how to completely remove Flipper from the iOS and Android projects. I did not include babel, metro, watchman, flow, buck, prettier or eslint configs which are included in the standard template.
 
 - Create a project directory: `mkdir MinimalReactNativeApp`
 - Go to the root directory for your project and create a new `package.json` file with the following contents:
@@ -11,14 +13,14 @@
 }
 ```
 
-- Make sure you have installed all prerequisites like _node_ and _react-native_ as well as the _yarn_ package manager.
+- Make sure that all prerequisites like _node_ as well as the _yarn_ package manager have been installed as described in [Setting up the development environment · React Native](https://reactnative.dev/docs/environment-setup).
 - Install the `react-native` and `react` packages. Open a terminal, then navigate to the directory with your `package.json` file and run:
 
 ```bash
 yarn add react-native
 ```
 
-(or `yarn add react-native@0.63.4` on macOS Mojave)
+- (or `yarn add react-native@0.63.4` on macOS Mojave)
 
 - This will print a message similar to the following (scroll up in the yarn output to see it):
 
@@ -29,28 +31,28 @@ react-native@0.63.4 has unmet peer dependency "react@16.13.1"
 - This is OK, it means we also need to install React with the shown VERSION:
 
 ```bash
-yarn add react@16.13.1
-yarn add react@17.0.1
-
 yarn add react@VERSION
 ```
 
+- (currently `yarn add react@16.13.1` on macOS Mojave or `yarn add react@17.0.1` on macOS Catalina)
+
+
 - The installation process has created a new `/node_modules` folder. This folder stores all the JavaScript dependencies required to build your project.
-- Add an `app.json` config file:
+- Add an `app.json` config file, which will be used by react-native-eject:
 
 ```json
 {
   "name": "MinimalReactNativeApp",
-  "displayName": "MinimalReactNativeApp"
+  "displayName": "Minimal React Native App"
 }
 ```
+- Only the `displayName` may contain spaces, not the `name`
 
 - Create the required iOS and Android projects by using the `eject` command:
 
 ```bash
 yarn add react-native-eject
 yarn react-native eject
-yarn remove react-native-eject
 ```
 
 ### Add the main App javascript files
@@ -76,7 +78,7 @@ export default function App() {
 }
 ```
 
-- Alternatively include the `App.js` code in `index.js`
+- Alternatively integrate the `App.js` code in `index.js`
 
 ```jsx
 import React from "react";
@@ -90,15 +92,15 @@ const App = function () {
 AppRegistry.registerComponent(appName, () => App);
 ```
 
-- Start in Android Emulator to check that it works
+- Start the App in Android Emulator to check that it works
 
 ```bash
 yarn react-native run-android
 ```
 
-### Prepare ios build
+### Prepare iOS build
 
-- In `ios/Podfile` add `inhibit_all_warnings!` near the top and disable Flipper by commenting out near the bottom: `#use_flipper`...
+- In `ios/Podfile` add `inhibit_all_warnings!` near the top to minimize warning messages and disable Flipper to speed up builds by commenting out near the bottom: `#use_flipper`...
 
 ```jsx
 platform :ios, '10.0'
@@ -111,20 +113,20 @@ inhibit_all_warnings!
   # end
 ```
 
-- Install Pods and open project in Xcode to check
+- Install the Pods and open the project in Xcode to check
 
 ```bash
 npx pod-install ios
 xed -b ios
 ```
 
-- Run it in iOS Simulator by starting it in Xcode or via Terminal:
+- Run the App in iOS Simulator by starting it in Xcode or via Terminal:
 
 ```bash
 yarn react-native run-ios
 ```
 
-- Add `.gitignore` file:
+- Add a `.gitignore` file:
 
 ```bash
 # macOS
@@ -173,7 +175,37 @@ buck-out/
 /ios/Pods/
 ```
 
+- Remove the command, if everything is working:
+```
+yarn remove react-native-eject
+```
+That's it!
+
+---
+
+### Completely Remove Flipper (optional)
+
+- [Question: How do i remove Flipper from React Native? · Issue #1326 · facebook/flipper · GitHub](https://github.com/facebook/flipper/issues/1326) (see Diff for complete removal)
+
+  - [Manually set up your React Native Android App | Flipper](https://fbflipper.com/docs/getting-started/react-native-android)
+  - [Manually set up your React Native iOS App | Flipper](https://fbflipper.com/docs/getting-started/react-native-ios)
+  - To completely comment out or remove Flipper look in:
+
+  ```bash
+  android/gradle.properties
+  android/app/build.gradle
+  android/app/src/debug/java/com/minimalreactnativeapp/ReactNativeFlipper.java
+  android/app/src/main/java/com/minimalreactnativeapp/MainApplication.java
+
+  ios/MinimalReactNativeApp/AppDelegate.m
+  ios/Podfile
+  ```
+  
+---
+  
 ### Cleanup and reinstall
+
+Only as needed
 
 - Remove just the **_Pods_** (for example after editing Podfile) and reinstall
 
@@ -199,20 +231,8 @@ rm -Rf node_modules
 yarn install
 ```
 
-### Completely Remove Flipper
+### References
 
-- [Question: How do i remove Flipper from React Native? · Issue #1326 · facebook/flipper · GitHub](https://github.com/facebook/flipper/issues/1326) (see Diff for complete removal)
+- [Integration with Existing Apps · React Native](https://reactnative.dev/docs/integration-with-existing-apps)
+- [GitHub - ramyareye/react-native-eject: Single command to eject a React Native app](https://github.com/ramyareye/react-native-eject)
 
-  - [Manually set up your React Native Android App | Flipper](https://fbflipper.com/docs/getting-started/react-native-android)
-  - [Manually set up your React Native iOS App | Flipper](https://fbflipper.com/docs/getting-started/react-native-ios)
-  - To completely comment out or remove Flipper look in:
-
-  ```bash
-  android/gradle.properties
-  android/app/build.gradle
-  android/app/src/debug/java/com/minimalreactnativeapp/ReactNativeFlipper.java
-  android/app/src/main/java/com/minimalreactnativeapp/MainApplication.java
-
-  ios/MinimalReactNativeApp/AppDelegate.m
-  ios/Podfile
-  ```
