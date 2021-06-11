@@ -1,6 +1,6 @@
 # Manual Install of a Minimal React Native Project
 
-The purpose of this experiment is to understand the essential files that go into a React Native project and to learn how to recreate or fix parts, if necessary. It is also intended to check how to completely remove Flipper from the iOS and Android projects. I did not include babel, metro, watchman, flow, buck, prettier or eslint configs which are included in the standard template.
+The purpose of this experimental minimal project is to understand the essential files that go into a React Native project, to learn how to recreate parts, if necessary and how to build a template. It is also intended to check how to completely remove Flipper from the iOS and Android projects. I did not include babel, metro, watchman, flow, buck, prettier or eslint configs which are included in the standard template.
 
 - Create a project directory: `mkdir MinimalReactNativeApp`
 - Go to the root directory for your project and create a new `package.json` file with the following contents:
@@ -36,7 +36,6 @@ yarn add react@VERSION
 
 - (currently `yarn add react@16.13.1` on macOS Mojave or `yarn add react@17.0.1` on macOS Catalina)
 
-
 - The installation process has created a new `/node_modules` folder. This folder stores all the JavaScript dependencies required to build your project.
 - Add an `app.json` config file, which will be used by react-native-eject:
 
@@ -46,6 +45,7 @@ yarn add react@VERSION
   "displayName": "Minimal React Native App"
 }
 ```
+
 - Only the `displayName` may contain spaces, not the `name`
 
 - Create the required iOS and Android projects by using the `eject` command:
@@ -60,9 +60,9 @@ yarn react-native eject
 - Add a standard`index.js` file:
 
 ```jsx
-import { AppRegistry } from "react-native";
-import App from "./App";
-import { name as appName } from "./app.json";
+import { AppRegistry } from 'react-native';
+import App from './App';
+import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 ```
@@ -70,8 +70,8 @@ AppRegistry.registerComponent(appName, () => App);
 - Add a Hello World `App.js` file:
 
 ```jsx
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import { Text } from 'react-native';
 
 export default function App() {
   return <Text style={{ fontSize: 32 }}>Hello, world!</Text>;
@@ -81,9 +81,9 @@ export default function App() {
 - Alternatively integrate the `App.js` code in `index.js`
 
 ```jsx
-import React from "react";
-import { AppRegistry, Text } from "react-native";
-import { name as appName } from "./app.json";
+import React from 'react';
+import { AppRegistry, Text } from 'react-native';
+import { name as appName } from './app.json';
 
 const App = function () {
   return <Text style={{ fontSize: 32 }}>Hello, world!</Text>;
@@ -176,9 +176,11 @@ buck-out/
 ```
 
 - Remove the command, if everything is working:
+
 ```
 yarn remove react-native-eject
 ```
+
 That's it!
 
 ---
@@ -200,9 +202,9 @@ That's it!
   ios/MinimalReactNativeApp/AppDelegate.m
   ios/Podfile
   ```
-  
+
 ---
-  
+
 ### Cleanup and reinstall
 
 Only as needed
@@ -231,8 +233,12 @@ rm -Rf node_modules
 yarn install
 ```
 
+- React Native Clean Project provides additional options
+
+[GitHub - pmadruga/react-native-clean-project: Automating the clean up of a React Native project](https://github.com/pmadruga/react-native-clean-project)
+
 ### References
 
 - [Integration with Existing Apps · React Native](https://reactnative.dev/docs/integration-with-existing-apps)
 - [GitHub - ramyareye/react-native-eject: Single command to eject a React Native app](https://github.com/ramyareye/react-native-eject)
-
+- [How To Make Your Own Custom React Native Templates (2021) - DEV Community](https://dev.to/roycechua/how-to-make-your-own-custom-react-native-templates-2021-20l5)
