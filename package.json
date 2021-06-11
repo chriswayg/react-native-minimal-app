@@ -1,0 +1,8 @@
+{
+  "name": "react-native-minimal-app",
+  "version": "0.0.1",
+  "description": "A React Native Minimal Template",
+  "repository": "https://github.com/chriswayg/react-native-minimal-app.git",
+  "author": "ChrisWayg",
+  "license": "MIT"
+}
