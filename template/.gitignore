@@ -20,7 +20,6 @@ DerivedData
 *.xcuserstate
 
 # Android/IntelliJ
-build/
 .idea
 .gradle
 local.properties
@@ -44,3 +43,4 @@ buck-out/
 /ios/Pods/
 
 .vscode
+/1
