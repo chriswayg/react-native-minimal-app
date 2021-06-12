@@ -2,7 +2,39 @@
   "name": "react-native-minimal-app",
   "version": "0.0.1",
   "description": "A React Native Minimal Template",
-  "repository": "https://github.com/chriswayg/react-native-minimal-app.git",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "main": "script.js",
+  "files": [
+    "template",
+    "script.js",
+    "template.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chriswayg/react-native-minimal-app.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "template",
+    "boilerplate",
+    "starter"
+  ],
   "author": "ChrisWayg",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chriswayg/react-native-minimal-app/issues"
+  },
+  "homepage": "https://github.com/chriswayg/react-native-minimal-app",
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+      "release": true
+    }
+  }
 }
