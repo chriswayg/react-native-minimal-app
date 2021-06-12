@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "preinstall": "$npm_execpath --silent run checkyarn",
+    "checkyarn": "if ! node -e \"process.exitCode=!/yarn\\.js$/.test(process.env.npm_execpath)\" ; then (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1) ; fi",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start"
@@ -15,9 +17,5 @@
     "@babel/core": "^7.14.5",
     "@babel/runtime": "^7.14.5",
     "metro-react-native-babel-preset": "^0.59.0"
-  },
-  "engines": {
-    "npm": "please-use-yarn",
-    "yarn": ">= 1.22.5"
   }
 }
