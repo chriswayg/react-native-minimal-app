@@ -1,6 +1,6 @@
 # Manual Install of a Minimal React Native Project
 
-The purpose of this experimental manual install of a minimal app is to understand the essential files that go into a React Native project, to learn how to recreate parts if necessary and how to create a template. It's also intended to check how to completely remove Flipper from the iOS and Android projects. The manually created app will work without _tests_ and the configs for buck, eslint, flow, git, prettier, watchman, babel, metro which are included in the standard template. These have been added to this minimal template.
+The purpose of this experimental manual install of a minimal app is to understand the essential files that go into a React Native project, to learn how to recreate parts if necessary and how to create a template. It's also intended to check how to completely remove Flipper from the iOS and Android projects. The manually created app will work without _tests_ and the configs for buck, eslint, flow, git, prettier, watchman, babel, metro which are included in the standard template. Some of these have been added to this minimal template.
 
 - Create a project directory: `mkdir MinimalReactNativeApp`
 - Go to the root directory for your project and create a new `package.json` file with the following contents:
@@ -9,7 +9,12 @@ The purpose of this experimental manual install of a minimal app is to understan
 {
   "name": "MinimalReactNativeApp",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "metro-react-native-babel-preset": "^0.59.0"
+  }
 }
 ```
 
@@ -170,7 +175,7 @@ yarn install
 ### How to use the template
 
 ```bash
-npx react-native init MyMinimalApp --template https://github.com/chriswayg/react-native-minimal-app.git
+npx react-native init MyMinimalApp --directory "my-minimal-app" --title "My Minimal App Display Name" --template https://github.com/chriswayg/react-native-minimal-app.git
 ```
 
 ### References
