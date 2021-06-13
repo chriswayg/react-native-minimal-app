@@ -1,6 +1,6 @@
 # Manual Install of a Minimal React Native Project
 
-The purpose of this experimental manual install of a minimal app is to understand the essential files that go into a React Native project, to learn how to recreate parts if necessary and how to create a template. It's also intended to check how to completely remove Flipper from the iOS and Android projects. The manually created app will basically work without _tests_ and the configs for buck, eslint, flow, git, prettier, watchman, babel, metro which are included in the standard template. Some of these have been added to this minimal template.
+The purpose of this experimental manual install of a minimal app is to understand the essential files that go into a React Native project, to learn how to recreate parts if necessary and how to create a template. It's also intended to check how to completely remove Flipper from the iOS and Android projects. The manually created app will basically work without _tests_ and the configs for buck, eslint, flow, git, prettier, watchman, babel and metro which are included in the standard template. Some of these have been added to the minimal template.
 
 - Create a project directory: `mkdir MinimalReactNativeApp`
 - Go to the root directory for your project and create a new `package.json` file with the following contents:
@@ -12,8 +12,7 @@ The purpose of this experimental manual install of a minimal app is to understan
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
-    "metro-react-native-babel-preset": "^0.59.0"
+    "@babel/runtime": "^7.8.4"
   }
 }
 ```
@@ -62,7 +61,7 @@ yarn react-native eject
 
 ### Add the main App file
 
-- Create an `index.js` file with 'Hellow World':
+- Create an `index.js` file with a quote:
 
 ```js
 import React from 'react';
@@ -70,7 +69,11 @@ import { AppRegistry, Text } from 'react-native';
 import { name as appName } from './app.json';
 
 const App = function () {
-  return <Text style={{ fontSize: 32 }}>Hello, world!</Text>;
+  return (
+    <Text style={{ fontSize: 32 }}>
+      The price of freedom is eternal vigilance.
+    </Text>
+  );
 };
 
 AppRegistry.registerComponent(appName, () => App);
@@ -84,7 +87,7 @@ yarn react-native run-android
 
 ### Prepare iOS build
 
-- In `ios/Podfile` add `inhibit_all_warnings!` near the top to minimize warning messages and disable Flipper to speed up builds by commenting out near the bottom: `#use_flipper`...
+- In `ios/Podfile` add `inhibit_all_warnings!` near the top to minimize Xcode warning messages and disable Flipper to speed up builds by commenting out near the bottom: `#use_flipper`...
 
 ```jsx
 platform :ios, '10.0'
@@ -168,11 +171,13 @@ rm -Rf node_modules
 yarn install
 ```
 
-- React Native Clean Project provides additional options
+- The tool _React Native Clean Project_ provides additional options
 
-[GitHub - pmadruga/react-native-clean-project: Automating the clean up of a React Native project](https://github.com/pmadruga/react-native-clean-project)
+  [GitHub - pmadruga/react-native-clean-project: Automating the clean up of a React Native project](https://github.com/pmadruga/react-native-clean-project)
 
 ### How to use the template
+
+This template is useful for quickly trying out stuff on iOS, as Flipper has been removed thereby speeding up builds. For actual app development use the official template.
 
 ```bash
 npx react-native init MyMinimalApp --directory "my-minimal-app" --title "My Minimal App Display Name" --template https://github.com/chriswayg/react-native-minimal-app.git
